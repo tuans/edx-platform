@@ -1,0 +1,101 @@
+.date-wrapper {
+    @extend .content;
+    font-family: $helvetica;
+
+    .date-title {
+        color: #414141;
+        font-weight: 500;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 0;
+    }
+
+
+    .timeline-item {
+        border-left: solid 1px #2d323e;
+        color: #2d323e;
+        position: relative;
+        padding-left: 1em;
+        padding-bottom: 1em;
+
+        &:last-of-type {
+            border-left: none;
+        }
+    }
+
+    .date-circle {
+        width: 7px;
+        height: 7px;
+        position: absolute;
+        left: -4px;
+        background-color: #2d323e;
+        border-radius: 50%;
+
+        &.active {
+            width: 13px;
+            height: 13px;
+            left: -7px;
+            background-color: #2d323e;
+        }
+    }
+
+    .date-content {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1.5em;
+
+        div {
+            flex: 100% 0;
+        }
+    }
+
+    .timeline-date {
+        @include font-size(16);
+        font-weight: bold;
+        margin-bottom: .75em;
+    }
+
+    .timeline-title {
+        @include font-size(14);
+        font-weight: bold;
+        margin-bottom: .5em;
+
+    }
+
+    .timeline-description {
+        @include font-size(14);
+
+        a {
+            color: #2d323e;
+            text-decoration: underline;
+        }
+    }
+
+    .pill {
+        @include font-size(12);
+
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        border-radius: 5px;
+        margin-left: .25em;
+        font-style: italic;
+        font-weight: bold;
+
+        &.due {
+            background-color: #ffdb87;
+            color: #2d323e;
+        }
+
+        &.verified {
+            background-color: #2d323e;
+            color: $white;
+        }
+
+    }
+
+    .verified-icon {
+        padding-right: .5em;
+    }
+}

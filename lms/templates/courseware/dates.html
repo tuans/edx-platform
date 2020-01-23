@@ -1,0 +1,63 @@
+<%page expression_filter="h"/>
+<%inherit file="/main.html" />
+<%namespace name='static' file='/static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from lms.djangoapps.courseware.date_summary import CourseAssignmentDate, VerificationDeadlineDate, VerifiedUpgradeDeadlineDate
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<%block name="bodyclass">view-in-course view-progress</%block>
+
+<%block name="headextra">
+<%static:css group='style-course-vendor'/>
+<%static:css group='style-course'/>
+</%block>
+
+<%block name="pagetitle">${_("{course.display_number_with_default} Course Info").format(course=course)}</%block>
+
+<%include file="/courseware/course_navigation.html" args="active_page='syllabus'" />
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <div class="container">
+        <div class="date-wrapper">
+            <section class="course-info" id="course-info-dates">
+                <h2 class="hd hd-2 date-title">
+                    ${_("Important Dates")}
+                </h2>
+                % for block in course_date_blocks:
+                    <% active = 'active' if block.date and (block.date.strftime(block.date_format) == block.current_time.strftime(block.date_format)) else '' %>
+                    <% verified = type(block) in (VerificationDeadlineDate, VerifiedUpgradeDeadlineDate) or (hasattr(block, 'requires_full_access') and block.requires_full_access) %>
+                    <div class="timeline-item ${active}">
+                        <div class="date-circle ${active}"></div>
+                        <div class="date-content">
+                            <div class="timeline-date ">
+                                % if block.date:
+                                    ${block.date.strftime(block.date_format)}
+                                    % if active:
+                                        <span class="pill due">${_("Due Today")}</span>
+                                    % endif
+                                    % if verified:
+                                        <span class="pill verified"><span class="fa fa-lock verified-icon" aria-hidden="true"></span>${_("Verified Only")}</span>
+                                    % endif
+                                % endif
+                            </div>
+                            <div class="timeline-title ">
+                                ${block.title}
+                            </div>
+                            <div class="timeline-description">
+                                ${block.description}
+                                % if verified and verified_upgrade_link:
+                                    ${Text(_('{a_open}Upgrade{a_close} to a Verified Certificate for full access.')).format(
+                                        a_open=HTML('<a href={link}>'.format(link=verified_upgrade_link)),
+                                        a_close=HTML('</a>'),
+                                    )}
+                                % endif
+                            </div>
+                        </div>
+                    </div>
+                % endfor
+            </section>
+        </div>
+    </div>
+</main>
