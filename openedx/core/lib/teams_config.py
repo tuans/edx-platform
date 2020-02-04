@@ -9,6 +9,7 @@ from enum import Enum
 import six
 from django.utils.functional import cached_property
 
+DEFAULT_MAX_TEAM_SIZE_DEFAULT = 50
 
 class TeamsConfig(object):
     """
@@ -141,8 +142,9 @@ class TeamsConfig(object):
         The default maximum size for teams in this course.
 
         Can be overriden by individual team sets; see `calc_max_team_size`.
+        If it is not overridden, it defaults to 50
         """
-        return _clean_max_team_size(self._data.get('max_team_size'))
+        return _clean_max_team_size(self._data.get('max_team_size')) or DEFAULT_MAX_TEAM_SIZE_DEFAULT
 
     def calc_max_team_size(self, teamset_id):
         """
