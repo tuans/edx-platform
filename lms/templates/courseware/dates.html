@@ -27,23 +27,31 @@ from openedx.core.djangolib.markup import HTML, Text
                 </h2>
                 % for block in course_date_blocks:
                     <% active = 'active' if block.date and (block.date.strftime(block.date_format) == block.current_time.strftime(block.date_format)) else '' %>
-                    <% verified = type(block) in (VerificationDeadlineDate, VerifiedUpgradeDeadlineDate) or (hasattr(block, 'requires_full_access') and block.requires_full_access) %>
+                    <% verified = hasattr(block, 'requires_full_access') and block.requires_full_access %>
+                    <% is_assignment = isinstance(block, CourseAssignmentDate) %>
                     <div class="timeline-item ${active}">
                         <div class="date-circle ${active}"></div>
-                        <div class="date-content">
+                        <div class="date-content ${active}">
                             <div class="timeline-date ">
                                 % if block.date:
                                     ${block.date.strftime(block.date_format)}
                                     % if active:
-                                        <span class="pill due">${_("Due Today")}</span>
+                                        <span class="pill due">${_('Due Today')}</span>
                                     % endif
                                     % if verified:
-                                        <span class="pill verified"><span class="fa fa-lock verified-icon" aria-hidden="true"></span>${_("Verified Only")}</span>
+                                        <span class="pill verified"><span class="fa fa-lock verified-icon" aria-hidden="true"></span>${_('Verified Only')}</span>
                                     % endif
                                 % endif
                             </div>
                             <div class="timeline-title ">
-                                ${block.title}
+                                % if block.link and is_assignment:
+                                    ${HTML('<a href="{link}">{title}</a>').format(
+                                        link=block.link,
+                                        title=block.title,
+                                    )}
+                                % else:
+                                    ${block.title}
+                                % endif
                             </div>
                             <div class="timeline-description">
                                 ${block.description}
