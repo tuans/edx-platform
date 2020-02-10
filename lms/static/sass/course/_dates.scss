@@ -57,12 +57,14 @@
 
   .timeline-date {
     @include font-size(16);
+
     font-weight: bold;
     margin-bottom: 4px;
   }
 
   .timeline-title {
     @include font-size(14);
+    
     font-weight: bold;
 
     a {
