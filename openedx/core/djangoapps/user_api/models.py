@@ -139,7 +139,7 @@ class UserCourseTag(models.Model):
         unique_together = ("user", "course_id", "key")
 
 
-class UserOrgTag(TimeStampedModel, DeletableByUserValue):  # pylint: disable=model-missing-unicode
+class UserOrgTag(TimeStampedModel, DeletableByUserValue):
     """
     Per-Organization user tags.
 
@@ -172,7 +172,6 @@ class RetirementState(models.Model):
     required = models.BooleanField(default=False)
 
     def __str__(self):
-        # pylint: disable=unicode-format-string
         return '{} (step {})'.format(self.state_name, self.state_execution_order)
 
     class Meta(object):
@@ -293,8 +292,9 @@ class UserRetirementStatus(TimeStampedModel):
             if new_state_index <= states.index(self.current_state.state_name):
                 raise ValueError()
         except ValueError:
-            err = u'{} does not exist or is an eariler state than current state {}'.format(new_state, self.current_state)
-            raise RetirementStateError(err)
+            raise RetirementStateError(
+                u'{} does not exist or is an eariler state than current state {}'.format(new_state, self.current_state)
+            )
 
     def _validate_update_data(self, data):
         """
@@ -306,7 +306,9 @@ class UserRetirementStatus(TimeStampedModel):
 
         for required_key in required_keys:
             if required_key not in data:
-                raise RetirementStateError(u'RetirementStatus: Required key {} missing from update'.format(required_key))
+                raise RetirementStateError(
+                    u'RetirementStatus: Required key {} missing from update'.format(required_key)
+                )
 
         for key in data:
             if key not in known_keys:
