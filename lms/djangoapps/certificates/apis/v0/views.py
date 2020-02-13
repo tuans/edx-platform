@@ -274,9 +274,16 @@ class CertificatesListView(APIView):
                 course_certificate = passing_certificates[course_key]
                 # add certificate into viewable certificate list only if it's a PDF certificate
                 # or there is an active certificate configuration.
-                if course_certificate['is_pdf_certificate'] or course_overview.has_any_active_web_certificate:
-                    course_certificate['course_display_name'] = course_overview.display_name_with_default
-                    course_certificate['course_organization'] = course_overview.display_org_with_default
+                has_any_active_web_certificate = course_overview and course_overview.has_any_active_web_certificate
+                if course_certificate['is_pdf_certificate'] or has_any_active_web_certificate:
+                    # For very old deleted XML courses.
+                    course_display_name = '{org} Course'.format(org=course_key.org)
+                    course_organization = course_key.org
+                    if course_overview:
+                        course_display_name = course_overview.display_name_with_default
+                        course_organization = course_overview.display_org_with_default
+                    course_certificate['course_display_name'] = course_display_name
+                    course_certificate['course_organization'] = course_organization
                     viewable_certificates.append(course_certificate)
 
         viewable_certificates.sort(key=lambda certificate: certificate['created'])

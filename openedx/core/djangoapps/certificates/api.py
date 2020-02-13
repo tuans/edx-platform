@@ -32,6 +32,11 @@ def certificates_viewable_for_course(course):
     """
     Returns True if certificates are viewable for any student enrolled in the course, False otherwise.
     """
+    # For deleted XML courses in which learners have a valid certificate.
+    # i.e. MITx/7.00x/2013_Spring
+    if course is None:
+        return True
+
     if course.self_paced:
         return True
     if (
