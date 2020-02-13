@@ -124,6 +124,20 @@ ${HTML(fragment.foot_html())}
   % endif
   >
   <div class="course-wrapper" role="presentation">
+    <iframe id="rocketchatframe" src="http://localhost:18222/channel/democourse?layout=embedded" style="width:400px;height:500px;z-index:10;position:absolute;top:30px;right:10px">
+    </iframe>
+    <div id="chat-icon-container" style="position:absolute;top:0px;right:10px;cursor:pointer;">
+      <img src="https://img.favpng.com/6/10/13/livechat-online-chat-logo-computer-icons-png-favpng-TxWNEJkvmUpCitimFEKtUvfhb.jpg" style="width:50px;height:30px;"/>
+    </div>
+    </div>
+    <script type="text/javascript">
+      var rocketchatIframe = $('#rocketchatframe');
+      var triggerDiv = $('#chat-icon-container');
+      rocketchatIframe.hide();
+      triggerDiv.click(function(){
+        rocketchatIframe.toggle();
+      });
+    </script>
 
 % if disable_accordion is UNDEFINED or not disable_accordion:
     <div class="course-index">
