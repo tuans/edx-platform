@@ -231,7 +231,8 @@ git+https://github.com/jazzband/sorl-thumbnail.git@13bedfb7d2970809eda597e3ef793
 sortedcontainers==2.1.0
 soupsieve==1.9.5          # via beautifulsoup4
 sqlparse==0.3.0
-staff-graded-xblock==0.6
+#staff-graded-xblock==0.6
+https://github.com/edx/staff_graded-xblock/archive/ahtisham/PROD-1244.zip
 stevedore==1.32.0
 super-csv==0.9.6
 sympy==1.5.1
