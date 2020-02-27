@@ -15,7 +15,7 @@ from openedx.core.djangolib.js_utils import js_escaped_string
 <div class="wrapper-content wrapper">
   <section class="content">
     <header>
-      <h1 class="title title-1">${_("Sign In to {studio_name}").format(studio_name=settings.STUDIO_NAME)}</h1>
+      <h1 class="title title-1">${_("ABC Sign In to {studio_name}").format(studio_name=settings.STUDIO_NAME)}</h1>
       <a href="${reverse('signup')}" class="action action-signin">${_("Don't have a {studio_name} Account? Sign up!").format(studio_name=settings.STUDIO_SHORT_NAME)}</a>
     </header>
     <!-- Login Page override for test-theme. -->
@@ -41,7 +41,7 @@ from openedx.core.djangolib.js_utils import js_escaped_string
         </fieldset>
 
         <div class="form-actions">
-          <button type="submit" id="submit" name="submit" class="action action-primary">${_("Sign In to {studio_name}").format(studio_name=settings.STUDIO_NAME)}</button>
+          <button type="submit" id="submit" name="submit" class="action action-primary">${_("XYZ Sign In to {studio_name}").format(studio_name=settings.STUDIO_NAME)}</button>
         </div>
 
         <!-- no honor code for CMS, but need it because we're using the lms student object -->
