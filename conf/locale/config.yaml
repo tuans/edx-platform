@@ -81,7 +81,7 @@ locales:
     # - uk  # Ukranian
     # - ur  # Urdu
     # - uz  # Uzbek
-    # - vi  # Vietnamese
+    - vi  # Vietnamese
     - zh_CN  # Chinese (China)
     # - zh_HK  # Chinese (Hong Kong)
     # - zh_TW  # Chinese (Taiwan)
