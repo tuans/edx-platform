@@ -20240,7 +20240,7 @@ msgstr "Hồ sơ của tôi"
 msgid ""
 "Build out your profile to personalize your identity on {platform_name}."
 msgstr ""
-"Xây dựng hồ sơ của bạn để cá nhân hóa thông tin của bạn trên "
+"Xây dựng hồ sơ của bạn để cá nhân hóa thông tin của bạn trên  ooooo"
 "{platform_name}."
 
 #: openedx/features/learner_profile/templates/learner_profile/learner_profile.html
