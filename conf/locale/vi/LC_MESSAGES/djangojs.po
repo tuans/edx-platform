@@ -8902,7 +8902,7 @@ msgstr ""
 
 #: openedx/features/learner_profile/static/learner_profile/templates/section_two.underscore
 msgid "You are currently sharing a limited profile."
-msgstr ""
+msgstr "Hiện tại bạn đang ko chia sẻ hồ sơ PO file"
 
 #: openedx/features/learner_profile/static/learner_profile/templates/section_two.underscore
 msgid "This learner is currently sharing a limited profile."
